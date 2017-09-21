@@ -12,6 +12,7 @@
     <artifactId>cgm-pring</artifactId>
     <properties>
         <start-class>com.laugues.cgm.part3.springboot.CgmApplication</start-class>
+        <jjwt.version>0.7.0</jjwt.version>
     </properties>
     <build>
         <plugins>
@@ -33,10 +34,10 @@
 
     <dependencies>
 
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-security</artifactId>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -57,7 +58,16 @@
             <artifactId>cgm-rest-api</artifactId>
             <version>${project.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.laugues.cgm.part3</groupId>
+            <artifactId>cgm-dto</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
 
 
         <!-- Test dependencies-->
