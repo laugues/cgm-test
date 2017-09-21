@@ -12,9 +12,9 @@
     <artifactId>cgm-backend</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>dto</module>
         <module>rest-api</module>
         <module>package</module>
-        <module>dto</module>
     </modules>
 
 
