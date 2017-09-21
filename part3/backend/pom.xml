@@ -12,8 +12,8 @@
     <artifactId>cgm-backend</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>package</module>
         <module>rest-api</module>
+        <module>package</module>
     </modules>
 
 

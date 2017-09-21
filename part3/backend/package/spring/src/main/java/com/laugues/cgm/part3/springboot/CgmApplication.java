@@ -1,4 +1,4 @@
-package com.lagues.cmg.part3.sprinboot;
+package com.laugues.cgm.part3.springboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
