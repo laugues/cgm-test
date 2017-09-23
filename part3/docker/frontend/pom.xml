@@ -10,6 +10,97 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>cgm-docker-frontend</artifactId>
+    <description>Docker image for cmg frontend</description>
+    <properties>
+        <docker.artifact.name>cgm/frontend</docker.artifact.name>
+    </properties>
+    <profiles>
+        <profile>
+            <id>docker</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>copy-cgm-springboot-files</id>
+                                <goals>
+                                    <goal>copy-dependencies</goal>
+                                </goals>
+                                <phase>generate-resources</phase>
+                                <configuration>
+                                    <includeGroupIds>com.laugues.cgm.part3</includeGroupIds>
+                                    <includeArtifactIds>cgm-springboot</includeArtifactIds>
+                                    <type>jar</type>
+                                    <outputDirectory>${project.build.directory}/docker/packages</outputDirectory>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>copy-resources</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${project.build.directory}/docker</outputDirectory>
+                                    <resources>
+                                        <!--include init custom scripts-->
+                                        <resource>
+                                            <directory>${basedir}</directory>
+                                            <filtering>false</filtering>
+                                            <includes>
+                                                <include>init/**/*.*</include>
+                                            </includes>
+                                        </resource>
+                                        <!--include Dockerfile in docker build directory-->
+                                        <resource>
+                                            <directory>${basedir}</directory>
+                                            <filtering>true</filtering>
+                                            <includes>
+                                                <include>Dockerfile</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>com.spotify</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <version>0.4.14</version>
+                        <configuration>
+                            <imageName>${docker.artifact.name}</imageName>
+                            <dockerDirectory>${project.build.directory}/docker</dockerDirectory>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>build-image</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.laugues.cgm.part3</groupId>
+            <artifactId>cgm-springboot</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 
 
 </project>

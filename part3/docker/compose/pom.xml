@@ -11,5 +11,90 @@
 
     <artifactId>cgm-docker-compose</artifactId>
 
+    <properties>
+        <docker.cgm.tag>latest</docker.cgm.tag>
+    </properties>
 
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+                <executions>
+                    <!--Filtering docker-compose.yml-->
+                    <execution>
+                        <id>copy-resources-demo</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}</directory>
+                                    <filtering>true</filtering>
+                                    <includes>
+                                        <include>docker-compose.yml</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>docker-run</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.6.0</version>
+                        <executions>
+                            <!--execute docker-compose down-->
+                            <execution>
+                                <id>docker-compose-down</id>
+                                <phase>package</phase>
+                                <configuration>
+                                    <executable>docker-compose</executable>
+                                    <workingDirectory>${project.build.directory}</workingDirectory>
+                                    <arguments>
+                                        <argument>down</argument>
+                                    </arguments>
+                                </configuration>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                            </execution>
+
+                            <!--execute docker-compose up -d-->
+                            <execution>
+                                <id>docker-compose-up</id>
+                                <phase>package</phase>
+                                <configuration>
+                                    <executable>docker-compose</executable>
+                                    <workingDirectory>${project.build.directory}</workingDirectory>
+                                    <arguments>
+                                        <argument>up</argument>
+                                        <argument>-d</argument>
+                                    </arguments>
+                                </configuration>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
 </project>

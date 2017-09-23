@@ -1,4 +1,4 @@
-package com.laugues.cgm.part3.springboot.jersey;
+package com.laugues.cgm.part3.springboot.config.security;
 
 import com.laugues.cgm.part3.springboot.security.HttpCORSFilter;
 import com.laugues.cgm.part3.springboot.security.JWTAuthenticationFilter;
@@ -18,11 +18,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  */
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter
-{
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     public static final String ALL_PATH_WILDCARD = "/**/*";
-    public static final String LOGI_REST_PATH = "/login";
+    public static final String LOGIN_REST_PATH = "/login";
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -31,11 +30,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, ALL_PATH_WILDCARD).permitAll()
-                .antMatchers("/login").permitAll()
+                .antMatchers(LOGIN_REST_PATH).permitAll()
+                .antMatchers("/ping").permitAll()
+                //TODO : remove dentist from permit all
+                .antMatchers("/dentist").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .addFilterBefore(new JWTLoginFilter(LOGI_REST_PATH, authenticationManager()),
-                                 UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new JWTLoginFilter(LOGIN_REST_PATH, authenticationManager()),
+                        UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new HttpCORSFilter(), ChannelProcessingFilter.class);
     }

@@ -7,10 +7,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+/**
+ * Rest api endpoint for ping
+ */
 @Named
 @Path("/ping")
-public class PingResource
-{
+public class PingResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

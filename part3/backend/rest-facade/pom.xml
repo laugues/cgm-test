@@ -9,11 +9,19 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cgm-package</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>springboot</module>
-    </modules>
+    <artifactId>cgm-rest-facade</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.laugues.cgm.part3</groupId>
+            <artifactId>cgm-dto</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 
 
 </project>

@@ -3,9 +3,11 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/part3" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/part3/backend" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/part3/backend/dto" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/part3/backend/package" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/part3/backend/package/spring" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/part3/backend/package/springboot" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/part3/backend/rest-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/part3/backend/rest-facade" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/part3/docker" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/part3/docker/backend" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/part3/docker/compose" charset="UTF-8" />

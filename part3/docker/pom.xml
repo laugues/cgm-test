@@ -11,11 +11,11 @@
 
     <artifactId>cgm-docker</artifactId>
     <packaging>pom</packaging>
+
     <modules>
         <module>backend</module>
         <module>frontend</module>
         <module>compose</module>
     </modules>
-
 
 </project>

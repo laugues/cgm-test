@@ -1,0 +1,37 @@
+version: '2.1'
+services:
+  cgm-backend:
+    container_name: cgm-backend
+    image: cgm/backend:${docker.cgm.tag}
+    environment:
+     - TZ=${TIMEZONE:-Europe/Paris}
+    ports:
+     - 9186:8080
+     - 9001:8000
+    healthcheck:
+        test: curl -f http://localhost:8080/ping
+        interval: 10s
+        timeout: 30s
+        retries: 10
+    networks:
+     - cgm-network
+  cgm-frontend:
+    container_name: cgm-frontend
+    image: cgm/frontend:${docker.cgm.tag}
+    environment:
+     - TZ=${TIMEZONE:-Europe/Paris}
+    ports:
+     - 8080:80
+    healthcheck:
+        test: curl -f http://localhost:80
+        interval: 20s
+        timeout: 30s
+        retries: 6
+    depends_on:
+     cgm-backend:
+      condition: service_healthy
+    networks:
+     - cgm-network
+networks:
+   cgm-network:
+     driver: bridge
