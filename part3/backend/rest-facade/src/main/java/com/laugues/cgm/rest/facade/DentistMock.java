@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Mock to manipulate/create dentist
+ */
 @Named
 @Singleton
 public class DentistMock {
@@ -16,12 +19,31 @@ public class DentistMock {
     public static final int MAX_DENTIST_NUMBER = 10;
 
     private List<DentistDTO> dentists;
+    private static final List<String> ADJECTIVES = new ArrayList<>();
+
+    static {
+        ADJECTIVES.add("cool");
+        ADJECTIVES.add("expensive");
+        ADJECTIVES.add("cheap");
+        ADJECTIVES.add("incompetent");
+        ADJECTIVES.add("famous");
+        ADJECTIVES.add("pleasant");
+        ADJECTIVES.add("brillant");
+        ADJECTIVES.add("beautifull");
+        ADJECTIVES.add("ugly");
+        ADJECTIVES.add("old");
+        ADJECTIVES.add("yound");
+        ADJECTIVES.add("tall");
+        ADJECTIVES.add("small");
+        ADJECTIVES.add("unfriendly");
+
+    }
 
     @PostConstruct
-    private void initMock() {
+    public  void initMock() {
         dentists = Collections.synchronizedList(new ArrayList<>());
         for (int i = 0; i < MAX_DENTIST_NUMBER; i++) {
-            dentists.add(buildFromIncrement(String.format("%02d", i)));
+            dentists.add(build(i));
         }
     }
 
@@ -31,11 +53,19 @@ public class DentistMock {
      * @param increment the increment
      * @return the dentist built
      */
-    private DentistDTO buildFromIncrement(String increment) {
+    private DentistDTO build(int increment) {
+        String stringIncrement = String.format("%02d", increment);
         return new DentistDTO()
-                .setLogin("dentist" + increment)
-                .setFirstName("firstName" + increment)
-                .setLastName("lastName" + increment);
+                .setLogin("dentist" + stringIncrement)
+                .setFirstName("firstName" + stringIncrement)
+                .setLastName("lastName" + stringIncrement)
+                .setDescription("This dentist is " + getAdjective())
+                .setImageId(increment + 1);
+    }
+
+    private String getAdjective() {
+        Integer i = Math.toIntExact(Math.round(ADJECTIVES.size() * Math.random()));
+        return ADJECTIVES.get(i);
     }
 
 

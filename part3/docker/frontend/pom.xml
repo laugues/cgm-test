@@ -22,17 +22,18 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-dependency-plugin</artifactId>
+                        <version>3.0.2</version>
                         <executions>
                             <execution>
-                                <id>copy-cgm-springboot-files</id>
+                                <id>copy-and-unpack-cgm-frontend-files</id>
                                 <goals>
-                                    <goal>copy-dependencies</goal>
+                                    <goal>unpack-dependencies</goal>
                                 </goals>
                                 <phase>generate-resources</phase>
                                 <configuration>
                                     <includeGroupIds>com.laugues.cgm.part3</includeGroupIds>
-                                    <includeArtifactIds>cgm-springboot</includeArtifactIds>
-                                    <type>jar</type>
+                                    <includeArtifactIds>cgm-dentist-manager</includeArtifactIds>
+                                    <type>zip</type>
                                     <outputDirectory>${project.build.directory}/docker/packages</outputDirectory>
                                 </configuration>
                             </execution>
@@ -40,6 +41,7 @@
                     </plugin>
                     <plugin>
                         <artifactId>maven-resources-plugin</artifactId>
+                        <version>3.0.2</version>
                         <executions>
                             <execution>
                                 <id>copy-resources</id>
@@ -97,8 +99,9 @@
     <dependencies>
         <dependency>
             <groupId>com.laugues.cgm.part3</groupId>
-            <artifactId>cgm-springboot</artifactId>
+            <artifactId>cgm-dentist-manager</artifactId>
             <version>${project.version}</version>
+            <type>zip</type>
         </dependency>
     </dependencies>
 

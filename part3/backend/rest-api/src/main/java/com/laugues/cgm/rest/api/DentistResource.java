@@ -18,7 +18,7 @@ import java.util.List;
 @Path(DentistResource.DENTIST_PATH)
 public class DentistResource {
 
-    protected static final String DENTIST_PATH = "/dentist";
+    protected static final String DENTIST_PATH = "/dentists";
 
     @Inject
     private DentistFacade facade;

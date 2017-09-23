@@ -32,8 +32,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.OPTIONS, ALL_PATH_WILDCARD).permitAll()
                 .antMatchers(LOGIN_REST_PATH).permitAll()
                 .antMatchers("/ping").permitAll()
-                //TODO : remove dentist from permit all
-                .antMatchers("/dentist").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new JWTLoginFilter(LOGIN_REST_PATH, authenticationManager()),

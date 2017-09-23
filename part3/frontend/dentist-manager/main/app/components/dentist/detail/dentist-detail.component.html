@@ -1,0 +1,19 @@
+<div class="jumbotron jumbotron-fluid">
+    <div>
+        <h1>Dentist detail :</h1>
+        <div class="row">
+            <h2 (click)="expand=true" class="col-xs-12 cursor-hand ">First Name : {{dentist.firstName}}</h2>
+            <div *ngIf="expand" class="visible-xs col-xs-12 expandable">
+                <h3> Description : {{dentist.description}}</h3>
+            </div>
+        </div>
+        <div class="row center">
+            <img class="image" src="http://lorempixel.com/400/200/nature/{{dentist.imageId}}/" style="height: 200px">
+        </div>
+        <div class="row hidden-xs">
+            <h2 class="col-xs-12"> Last Name : {{dentist.lastName}}</h2>
+        </div>
+        <br/>
+        <a [routerLink]="['/dentists']" class="btn btn-info right col-xs-12 col-sm-2">Back to list</a>
+    </div>
+</div>

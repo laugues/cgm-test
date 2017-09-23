@@ -1,0 +1,31 @@
+<div class="jumbotron jumbotron-fluid">
+    <div>
+        <h2>Dentitsts registred :</h2>
+        <table class="table table-striped">
+            <thead>
+            <th>
+                Image
+            </th>
+            <th (click)="sort('name')" class="cursor-hand">
+                First Name <span [hidden]="sortDesc"><i class="fa fa-sort-desc" aria-hidden="true"></i></span>
+                <span [hidden]="!sortDesc"><i class="fa fa-sort-asc" aria-hidden="true"></i></span>
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Description
+            </th>
+            </thead>
+            <tr *ngFor="let dentist of dentists | orderBy: sortProperty:sortDesc" (click)="click(dentist)"
+                class="cursor-hand">
+                <td>
+                    <img class="image" src="http://lorempixel.com/400/200/sports/{{dentist.imageId}}/" style="height: 20px">
+                </td>
+                <td>{{dentist.firstName}}</td>
+                <td>{{dentist.lastName}}</td>
+                <td>{{dentist.description}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

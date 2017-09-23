@@ -13,7 +13,7 @@ import java.util.List;
 public class DentistFacade {
 
     @Inject
-    private DentistMock dentistMock;
+    protected DentistMock dentistMock;
 
     /**
      * Get a list of dentist

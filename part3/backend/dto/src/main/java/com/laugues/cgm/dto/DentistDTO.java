@@ -4,12 +4,17 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Define a dentist
+ */
 @Named
-public class DentistDTO implements Serializable{
+public class DentistDTO implements Serializable {
 
     private String login;
     private String firstName;
     private String lastName;
+    private String description;
+    private Integer imageId;
 
 
     public String getLogin() {
@@ -38,6 +43,26 @@ public class DentistDTO implements Serializable{
         this.lastName = lastName;
         return this;
     }
+
+
+    public String getDescription() {
+        return description;
+    }
+
+    public DentistDTO setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public Integer getImageId() {
+        return imageId;
+    }
+
+    public DentistDTO setImageId(Integer imageId) {
+        this.imageId = imageId;
+        return this;
+    }
+
 
     @Override
     public boolean equals(Object o) {
