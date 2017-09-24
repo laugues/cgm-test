@@ -23,17 +23,12 @@ export class DentistDetailComponent implements OnInit {
     ngOnInit() {
         // reset login status
         this._dentist = this.currentDentistService.dentist;
-        console.log('selected dentist [' + JSON.stringify(this._dentist) + ']....');
-
         if (!this.dentistIsValid()) {
-            console.log('dentist not valid....');
             this.router.navigate(['dentists']);
         }
     }
 
     private dentistIsValid() {
-        console.log('dentist f name = '+this._dentist.firstName);
-        console.log('dentist last name = '+this._dentist.lastName);
         return this._dentist != null && this._dentist.firstName && this._dentist.lastName;
     }
 

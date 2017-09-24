@@ -16,7 +16,6 @@
       "polyfills": "polyfills.ts",
       "test": "test.ts",
       "tsconfig": "tsconfig.app.json",
-      "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
         "../node_modules/bootstrap/dist/css/bootstrap.css",
@@ -38,13 +37,15 @@
   },
   "lint": [
     {
-      "project": "src/tsconfig.app.json"
+      "files": "main/**/*.ts",
+      "project": "tsconfig.app.json"
     },
     {
-      "project": "src/tsconfig.spec.json"
+      "project": "tsconfig.spec.json"
     },
     {
-      "project": "e2e/tsconfig.e2e.json"
+      "files": "e2e/**/*.ts",
+      "project": "e2e/tsconfig.json"
     }
   ],
   "test": {

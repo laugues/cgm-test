@@ -43,12 +43,11 @@ export class UserService {
 
     register(user: User) {
         return new Observable<boolean>(observer => {
-            console.log('user firstName= [' + user.firstName + ']');
-            let headers = new Headers({ 'Content-Type': 'application/json' });
-            let options = new RequestOptions({ headers: headers });
+            let headers = new Headers({'Content-Type': 'application/json'});
+            let options = new RequestOptions({headers: headers});
             this.http.post('/back/users', UserService.buildBodyToSend(user), options)
                 .subscribe((response: Response) => {
-                        let dataResponse = response.json();
+                    let dataResponse = response.json();
                         if (dataResponse) {
                             observer.next(true);
                         } else {

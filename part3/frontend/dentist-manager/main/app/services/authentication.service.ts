@@ -28,7 +28,6 @@ export class AuthenticationService {
                         return dataResponse;
                     }, (error: any) => {
                         if (error.status == 401) {
-                            console.log("401 unauthorized");
                             //Set to false in order to tell the login failed
                             observer.next(false);
                             observer.complete();

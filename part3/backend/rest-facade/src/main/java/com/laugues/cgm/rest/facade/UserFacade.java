@@ -40,6 +40,7 @@ public class UserFacade {
         userEntity.setFirstName(userDTO.getFirstName());
         userEntity.setLastName(userDTO.getLastName());
         userEntity.setUserName(userDTO.getUserName());
+        //TODO : password should be hashed
         userEntity.setPassword(userDTO.getPassword());
         userEntity.setEmail(userDTO.getEmail());
         userEntity.setBirthday(userDTO.getBirthday());

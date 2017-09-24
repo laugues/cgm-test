@@ -35,6 +35,7 @@ Please go to [http://localhost](http://localhost)
 ```
 - Angular 4
 - Angular Cli 
+- Karma/Jasmin launched at build on port 9876
 ```
 
 - part3/docker : Build docker images, launch docker platform from maven 

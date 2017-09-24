@@ -4,18 +4,18 @@
 module.exports = function (config) {
     config.set({
         basePath: '',
-        frameworks: [ 'jasmine', '@angular-cli' ],
+        frameworks: [ 'jasmine', '@angular/cli' ],
         plugins: [
             require('karma-jasmine'),
             require('karma-chrome-launcher'),
             require('karma-remap-istanbul'),
-            require('@angular-cli/plugins/karma')
+            require('@angular/cli/plugins/karma')
         ],
         files: [
             { pattern: './main/test.ts', watched: false }
         ],
         preprocessors: {
-            './main/test.ts': [ '@angular-cli' ]
+            './main/test.ts': [ '@angular/cli' ]
         },
         mime: {
             'text/x-typescript': [ 'ts', 'tsx' ]
@@ -35,8 +35,8 @@ module.exports = function (config) {
         port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
-        autoWatch: true,
+        autoWatch: false,
         browsers: [ 'Chrome' ],
-        singleRun: false
+        singleRun: true
     });
 };

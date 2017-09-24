@@ -58,17 +58,16 @@
                                     <arguments>run-script build</arguments>
                                 </configuration>
                             </execution>
-                            <!--TODO : active unti test build-->
-                            <!--<execution>-->
-                                <!--<id>npm test build</id>-->
-                                <!--<phase>compile</phase>-->
-                                <!--<goals>-->
-                                    <!--<goal>npm</goal>-->
-                                <!--</goals>-->
-                                <!--<configuration>-->
-                                    <!--<arguments>run-script test</arguments>-->
-                                <!--</configuration>-->
-                            <!--</execution>-->
+                            <execution>
+                                <id>npm test build</id>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>run-script test</arguments>
+                                </configuration>
+                            </execution>
                         </executions>
                     </plugin>
                     <!-- Zip Building-->

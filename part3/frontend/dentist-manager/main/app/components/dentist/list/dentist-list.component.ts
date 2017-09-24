@@ -40,9 +40,6 @@ export class DentistListComponent implements OnInit {
      * @param {Dentist} selectedDentist the dentist selected
      */
     public click(selectedDentist: Dentist) {
-        console.log('DEntist imageId :'+selectedDentist.imageId);
-        console.log('DEntist lastName :'+selectedDentist.lastName);
-        console.log('DEntist description :'+selectedDentist.description);
         this.currentDentistService.dentist = selectedDentist;
         this.router.navigate(['dentist-detail']);
     }
