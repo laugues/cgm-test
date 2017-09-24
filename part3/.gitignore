@@ -2,6 +2,7 @@
 *~
 *.swp
 *.bak
+**/target/
 *.iml
 .idea/
 .project
