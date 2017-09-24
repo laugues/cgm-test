@@ -18,6 +18,10 @@ Please disable the using TLS in docker
 Go to the root folder of the code test : **cd part3**
 Launch following command: **mvn clean install -Pfront,docker,docker-run** it will deploy the database, the backend, 
 and frontend.
+Please wait all containers are 'healthy'. You can check it by executing the following command : 
+```
+docker ps -a | grep "cgm" 
+```
 
 # Enjoy it!
 Please go to [http://localhost](http://localhost)
@@ -33,6 +37,7 @@ Please go to [http://localhost](http://localhost)
 
 - part3/frontend : Endpoint rest and database access 
 ```
+- Nginx
 - Angular 4
 - Angular Cli 
 - Karma/Jasmin launched at build on port 9876
@@ -42,6 +47,12 @@ Please go to [http://localhost](http://localhost)
 ```
 - Docker
 - Docker Compose 
+```
+the images built are :  
+```
+- cgm-backend for the backend providing REST API based on springboot
+- cgm-database based on mariadb
+- cgm-frontend nginx frontend 
 ```
 
 
