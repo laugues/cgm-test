@@ -7,10 +7,7 @@ Modules specific to the part 2 (multiple answers and improve code test)
 This module is an frontend application (Angular 4, with springboot backend) that manage dentists.
 
 ## requirement
-- Docker 17.06
-```UPDATE
-Please disable the using TLS in docker
-```
+- Docker 17.06 (Please disable the using of TLS in docker config)
 - NPM 8.5.0
 - Maven 3.3.9
 
