@@ -13,18 +13,7 @@ export class DentistsService {
     }
 
     getAll(): Observable<Dentist[]> {
-        return this.http.get('/back/dentists', this.jwt()).map((response: Response) => response.json());
+        return this.http.get('/back/dentists', this.userService.jwt()).map((response: Response) => response.json());
     }
 
-
-    /**
-     * Build Jwt from current User
-     * @returns {RequestOptions}
-     */
-    private jwt() {
-        if (this.userService.user && this.userService.user.token) {
-            let headers = new Headers({'Authorization': 'Bearer ' + this.userService.user.token});
-            return new RequestOptions({headers: headers});
-        }
-    }
 }

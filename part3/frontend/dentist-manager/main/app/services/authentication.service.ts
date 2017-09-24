@@ -14,13 +14,12 @@ export class AuthenticationService {
     }
 
     login(username: string, password: string) {
-        console.log("hello AuthenticationService");
         return new Observable<boolean>(observer => {
-            this.http.post('/back/login', JSON.stringify({username: username, password: password}))
+            this.http.post('/back/login', JSON.stringify({userName: username, password: password}))
                 .subscribe((response: Response) => {
                         let dataResponse = response.json();
                         if (dataResponse && dataResponse.token) {
-                            let decodeToken = this.decodeToken(dataResponse);
+                            let decodeToken = AuthenticationService.decodeToken(dataResponse);
                             this.userService.user = new User(username, JSON.parse(decodeToken.roles), dataResponse.token);
                             observer.next(true);
                         } else {
@@ -46,7 +45,7 @@ export class AuthenticationService {
      * @param dataResponse
      * @returns {any} the token decode
      */
-    private decodeToken(dataResponse: any) {
+    private static decodeToken(dataResponse: any) {
         let jwtHelper: JwtHelper = new JwtHelper();
         return jwtHelper.decodeToken(dataResponse.token);
     }

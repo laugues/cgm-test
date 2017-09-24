@@ -1,6 +1,8 @@
 package com.laugues.cgm.rest.facade;
 
 
+import com.laugues.cgm.business.entities.DentistEntity;
+import com.laugues.cgm.business.service.DentistService;
 import com.laugues.cgm.dto.DentistDTO;
 import org.junit.After;
 import org.junit.Before;
@@ -21,12 +23,12 @@ public class DentistFacadeTest {
     private DentistFacade dentistFacade;
 
     @Mock
-    private DentistMock dentistMockTest = mock(DentistMock.class);
+    private DentistService dentistServiceMock = mock(DentistService.class);
 
     @Before
     public void setUp() throws Exception {
         dentistFacade = new DentistFacade() {{
-            this.dentistMock = dentistMockTest;
+            this.dentistService = dentistServiceMock;
         }};
     }
 
@@ -36,28 +38,32 @@ public class DentistFacadeTest {
 
     @Test
     public void testGetAll_EmptyList() throws Exception {
-        when(dentistMockTest.getDentists()).thenReturn(new ArrayList<>());
+        when(dentistServiceMock.findAll()).thenReturn(new ArrayList<>());
         assertEquals(new ArrayList<>(), dentistFacade.getAll());
     }
 
     @Test
     public void testGetAll() throws Exception {
-        List<DentistDTO> dentists = new ArrayList<>();
-        dentists.add(new DentistDTO().setFirstName("Tyron").setLastName("Lannister").setDescription("A dwarf")
-                .setImageId(12).setLogin("tyron"));
-        dentists.add(new DentistDTO().setFirstName("John").setLastName("Doe").setDescription("A dentist").setImageId
-                (8).setLogin("john"));
+        List<DentistEntity> dentists = new ArrayList<>();
+        dentists.add(new DentistEntity().setId(1).setFirstName("Tyron").setLastName("Lannister").setImageId(12));
+        dentists.add(new DentistEntity().setId(2).setFirstName("John").setLastName("Doe").setImageId(8));
 
-        when(dentistMockTest.getDentists()).thenReturn(dentists);
+        when(dentistServiceMock.findAll()).thenReturn(dentists);
 
         List<DentistDTO> actualDentists = dentistFacade.getAll();
 
         assertEquals(2, actualDentists.size());
-        assertEquals("Tyron", actualDentists.get(0).getFirstName());
-        assertEquals("Lannister", actualDentists.get(0).getLastName());
-        assertEquals("A dwarf", actualDentists.get(0).getDescription());
-        assertEquals("tyron", actualDentists.get(0).getLogin());
-        assertEquals(new Integer(12), actualDentists.get(0).getImageId());
+        DentistDTO firstDto = actualDentists.get(0);
+        assertEquals(new Integer(1), firstDto.getId());
+        assertEquals("Tyron", firstDto.getFirstName());
+        assertEquals("Lannister", firstDto.getLastName());
+        assertEquals(new Integer(12), firstDto.getImageId());
+
+        DentistDTO secondeDto = actualDentists.get(1);
+        assertEquals(new Integer(2), secondeDto.getId());
+        assertEquals("John", secondeDto.getFirstName());
+        assertEquals("Doe", secondeDto.getLastName());
+        assertEquals(new Integer(8), secondeDto.getImageId());
     }
 
 }

@@ -1,0 +1,68 @@
+<div class="jumbotron jumbotron-fluid">
+    <form class="form-horizontal" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+        <fieldset>
+            <legend>Registration</legend>
+
+            <div class="form-group" [ngClass]="{ 'has-error': userName.touched && !userName.valid }">
+                <label class="col-md-4 control-label" for="userName">User name</label>
+                <div class="col-md-4">
+                    <input id="userName" name="userName" #userName="ngModel" type="text" placeholder="heisenberg"
+                           [(ngModel)]="user.userName" class="form-control input-md" required>
+                </div>
+            </div>
+
+            <div class="form-group" [ngClass]="{ 'has-error': firstName.touched && !firstName.valid }">
+                <label class="col-md-4 control-label" for="firstName">First name</label>
+                <div class="col-md-4">
+                    <input id="firstName" name="firstName" #firstName="ngModel" type="text" placeholder="Walter" [(ngModel)]="user.firstName" class="form-control input-md" required>
+                </div>
+            </div>
+
+            <div class="form-group" [ngClass]="{ 'has-error': lastName.touched  && !lastName.valid }">
+                <label class="col-md-4 control-label" for="lastName">Family name</label>
+                <div class="col-md-4">
+                    <input id="lastName" name="lastName" #lastName="ngModel" type="text"
+                           placeholder="White" [(ngModel)]="user.lastName" class="form-control input-md" required>
+                </div>
+            </div>
+
+            <div class="form-group" [ngClass]="{ 'has-error': birthday.touched && !birthday.valid }">
+                <label class="col-md-4 control-label" for="birthday">Date of birth</label>
+                <div class="col-md-4">
+                    <input id="birthday" name="birthday" type="date" #birthday="ngModel"
+                           max="{{minDate | date:'yyyy-MM-dd'}}" [(ngModel)]="user.birthday"
+                           class="form-control input-md" required>
+                </div>
+            </div>
+
+            <div class="form-group" [ngClass]="{ 'has-error': email.touched  && !email.valid }">
+                <label class="col-md-4 control-label" for="email">Email</label>
+                <div class="col-md-4">
+                    <input id="email" name="email" #email="ngModel" type="email"
+                           pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                           placeholder="heisenberg@cmg.com" [(ngModel)]="user.email" class="form-control input-md"
+                           required>
+                </div>
+            </div>
+
+            <!-- Password input-->
+            <div class="form-group" [ngClass]="{ 'has-error': password.touched && !password.valid }">
+                <label class="col-md-4 control-label" for="password">Password</label>
+                <div class="col-md-4">
+                    <input id="password" name="password" #password="ngModel" type="password"
+                           placeholder="*********" [(ngModel)]="user.password" class="form-control input-md" required>
+
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary add-button right" [disabled]="!f.form.valid">Register</button>
+            <div *ngIf="f.submitted && !userName.valid" class="help-block">User Name is required</div>
+            <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
+            <div *ngIf="f.submitted && !lastName.valid" class="help-block">Family Name is required</div>
+            <div *ngIf="f.submitted && !birthday.valid" class="help-block">Birthday is required</div>
+            <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required and must be valid</div>
+            <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+            <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+        </fieldset>
+    </form>
+</div>

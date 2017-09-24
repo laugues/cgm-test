@@ -10,19 +10,20 @@ import java.util.Objects;
 @Named
 public class DentistDTO implements Serializable {
 
-    private String login;
+    private Integer id;
     private String firstName;
     private String lastName;
-    private String description;
     private Integer imageId;
 
-
-    public String getLogin() {
-        return login;
+    public DentistDTO() {
     }
 
-    public DentistDTO setLogin(String login) {
-        this.login = login;
+    public Integer getId() {
+        return id;
+    }
+
+    public DentistDTO setId(Integer id) {
+        this.id = id;
         return this;
     }
 
@@ -44,16 +45,6 @@ public class DentistDTO implements Serializable {
         return this;
     }
 
-
-    public String getDescription() {
-        return description;
-    }
-
-    public DentistDTO setDescription(String description) {
-        this.description = description;
-        return this;
-    }
-
     public Integer getImageId() {
         return imageId;
     }
@@ -63,17 +54,16 @@ public class DentistDTO implements Serializable {
         return this;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || !Objects.equals(getClass(), o.getClass())) return false;
-        DentistDTO dentistDTO = (DentistDTO) o;
-        return Objects.equals(login, dentistDTO.login);
+        DentistDTO that = (DentistDTO) o;
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(login);
+        return Objects.hash(id);
     }
 }

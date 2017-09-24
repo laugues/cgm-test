@@ -39,7 +39,7 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter
         UserDTO user = new ObjectMapper().readValue(req.getInputStream(), UserDTO.class);
 
         return getAuthenticationManager().authenticate(
-            new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(), Collections.emptyList())
+            new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword(), Collections.emptyList())
         );
     }
 

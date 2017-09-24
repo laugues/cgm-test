@@ -1,5 +1,24 @@
 version: '2.1'
 services:
+  cgm-database:
+   container_name: cgm-database
+   image: cgm/database:latest
+   restart: always
+   ports:
+    - 3307:3306
+   environment:
+   - TZ=${TIMEZONE:-Europe/Paris}
+   - MYSQL_DATABASE=root
+   - MYSQL_ROOT_PASSWORD=admin
+   - MYSQL_USER=cgm
+   - MYSQL_PASSWORD=cgm
+   healthcheck:
+    test: /opt/healthcheck.sh
+    interval: 10s
+    timeout: 30s
+    retries: 10
+   networks:
+     - cgm-network
   cgm-backend:
     container_name: cgm-backend
     image: cgm/backend:${docker.cgm.tag}
@@ -21,7 +40,7 @@ services:
     environment:
      - TZ=${TIMEZONE:-Europe/Paris}
     ports:
-     - 8080:80
+     - 80:80
     healthcheck:
         test: curl -f http://localhost:80
         interval: 5s

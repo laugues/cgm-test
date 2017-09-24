@@ -16,6 +16,9 @@
         <module>rest-facade</module>
         <module>rest-api</module>
         <module>package</module>
+        <module>business-entities</module>
+        <module>dao</module>
+        <module>business-service</module>
     </modules>
 
 

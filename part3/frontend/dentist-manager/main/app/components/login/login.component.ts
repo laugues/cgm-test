@@ -11,7 +11,7 @@ import {AuthenticationService} from '../../services/authentication.service';
 
 export class LoginComponent implements OnInit {
     private _model: any = {
-        username: "",
+        userName: "",
         password: ""
     };
     private _loading = false;
@@ -34,12 +34,9 @@ export class LoginComponent implements OnInit {
 
     login() {
         this._loading = true;
-        console.log("hello from login");
-        this.authenticationService.login(this._model.username, this._model.password)
+        this.authenticationService.login(this._model.userName, this._model.password)
             .subscribe(isUserLogged => {
-                console.log('authentication result... is [' + isUserLogged + ']');
                 if (isUserLogged === true) {
-                    console.log('Got to dentists view');
                     this.router.navigate(['dentists']);
                 } else {
                     this._error = 'Username or password is incorrect';

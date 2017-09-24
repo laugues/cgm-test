@@ -1,5 +1,6 @@
 <div class="jumbotron jumbotron-fluid">
     <div>
+        <h2>Congratulation you are logged into Dentist Manager!</h2>
         <h2>Dentitsts registred :</h2>
         <table class="table table-striped">
             <thead>
@@ -13,9 +14,6 @@
             <th>
                 Last Name
             </th>
-            <th>
-                Description
-            </th>
             </thead>
             <tr *ngFor="let dentist of dentists | orderBy: sortProperty:sortDesc" (click)="click(dentist)"
                 class="cursor-hand">
@@ -24,7 +22,6 @@
                 </td>
                 <td>{{dentist.firstName}}</td>
                 <td>{{dentist.lastName}}</td>
-                <td>{{dentist.description}}</td>
             </tr>
         </table>
     </div>

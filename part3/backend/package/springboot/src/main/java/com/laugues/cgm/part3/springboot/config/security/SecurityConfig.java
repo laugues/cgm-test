@@ -32,6 +32,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.OPTIONS, ALL_PATH_WILDCARD).permitAll()
                 .antMatchers(LOGIN_REST_PATH).permitAll()
                 .antMatchers("/ping").permitAll()
+                //create users for registrations
+                .antMatchers("/users").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new JWTLoginFilter(LOGIN_REST_PATH, authenticationManager()),
@@ -48,6 +50,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+
+//TODO : activate the link with jdbcAuthentication spring  authentication
         auth
                 .inMemoryAuthentication()
                 .withUser("user")

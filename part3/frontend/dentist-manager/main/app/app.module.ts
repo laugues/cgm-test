@@ -22,6 +22,7 @@ import {DentistDetailComponent} from "./components/dentist/detail/dentist-detail
 import {DentistsService} from "./services/dentist/dentists.service";
 import {CurrentDentistService} from "./services/dentist/current-dentist.service";
 import {DentistHomeComponent} from "./components/dentist/home/dentist-home.component";
+import {RegistrationComponent} from "./components/registration/registration.component";
 
 @NgModule({
     imports: [
@@ -36,7 +37,8 @@ import {DentistHomeComponent} from "./components/dentist/home/dentist-home.compo
         LoginComponent,
         DentistHomeComponent,
         DentistListComponent,
-        DentistDetailComponent
+        DentistDetailComponent,
+        RegistrationComponent
     ],
     providers: [
         AuthGuard,

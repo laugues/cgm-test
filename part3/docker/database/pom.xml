@@ -9,7 +9,72 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cgm-dokcer-database</artifactId>
-
+    <artifactId>cgm-docker-database</artifactId>
+    <description>Docker image for cmg database</description>
+    <properties>
+        <docker.artifact.name>cgm/database</docker.artifact.name>
+    </properties>
+    <profiles>
+        <profile>
+            <id>docker</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>3.0.2</version>
+                        <executions>
+                            <execution>
+                                <id>copy-resources</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${project.build.directory}/docker</outputDirectory>
+                                    <resources>
+                                        <!--include init custom scripts-->
+                                        <resource>
+                                            <directory>${basedir}</directory>
+                                            <filtering>false</filtering>
+                                            <includes>
+                                                <include>init/**/*.*</include>
+                                            </includes>
+                                        </resource>
+                                        <!--include Dockerfile in docker build directory-->
+                                        <resource>
+                                            <directory>${basedir}</directory>
+                                            <filtering>true</filtering>
+                                            <includes>
+                                                <include>Dockerfile</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>com.spotify</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <version>0.4.14</version>
+                        <configuration>
+                            <imageName>${docker.artifact.name}</imageName>
+                            <dockerDirectory>${project.build.directory}/docker</dockerDirectory>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>build-image</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>

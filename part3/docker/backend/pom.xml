@@ -22,6 +22,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-dependency-plugin</artifactId>
+                        <version>3.0.2</version>
                         <executions>
                             <execution>
                                 <id>copy-cgm-springboot-files</id>
@@ -39,7 +40,9 @@
                         </executions>
                     </plugin>
                     <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-resources-plugin</artifactId>
+                        <version>3.0.2</version>
                         <executions>
                             <execution>
                                 <id>copy-resources</id>
